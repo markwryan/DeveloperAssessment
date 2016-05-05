@@ -1,38 +1,31 @@
 package com.markwryan;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import com.markwryan.model.Entry;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for simple AddressBook.
  */
-public class AddressBookTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AddressBookTest(String testName )
-    {
-        super( testName );
+public class AddressBookTest {
+    private AddressBook addressBook;
+
+    @Before
+    public void setUp() {
+        addressBook = new AddressBook();
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AddressBookTest.class );
-    }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void handleUserAddressBookEntry_AddsEntryToAddressBook() {
+        final String entry = "mark,ryan,veritix,216-555-1231,notmyemail@fakeemail.com";
+        final Entry expectedEntry = new Entry("mark", "ryan", "veritix", "216-555-1231", "notmyemail@fakeemail.com");
+
+        addressBook.handleUserAddressBookEntry(entry);
+
+        assertEquals(1, addressBook.addressBookEntries.size());
+        assertEquals(expectedEntry, addressBook.addressBookEntries.get(0));
     }
 }
