@@ -12,7 +12,7 @@ public class AddressBookProgram {
 
     //Available Commands
     private enum Command {
-        ADD, LIST, EXIT
+        ADD, LIST, SEARCH, EXIT
     }
 
     public AddressBookProgram() {
@@ -24,7 +24,7 @@ public class AddressBookProgram {
      * Prompt and wait for user command.
      */
     public void waitForUserCommand() {
-        System.out.println("Please enter a command (add|list|exit): ");
+        System.out.println("Please enter a command (add|list|search|exit): ");
         String input = scanner.next();
 
         Command command;
@@ -42,9 +42,10 @@ public class AddressBookProgram {
             case LIST:
                 listAddressBookEntries();
                 break;
+            case SEARCH:
+                waitForUserOrganizationSearch();
             case EXIT:
                 exit();
-                break;
         }
     }
 
@@ -55,6 +56,13 @@ public class AddressBookProgram {
         System.out.println("[first],[last],[organization],[phone],[email]: ");
         String input = scanner.next();
         handleUserAddressBookEntry(input);
+        waitForUserCommand();
+    }
+
+    public void waitForUserOrganizationSearch() {
+        System.out.println("Enter organization name: ");
+        String input = scanner.next();
+        handleUserOrganizationSearch(input);
         waitForUserCommand();
     }
 
@@ -81,6 +89,9 @@ public class AddressBookProgram {
         waitForUserCommand();
     }
 
+    public void handleUserOrganizationSearch(String input) {
+        addressBook.search(input).forEach(System.out::println);
+    }
     /**
      * Quit the program
      */

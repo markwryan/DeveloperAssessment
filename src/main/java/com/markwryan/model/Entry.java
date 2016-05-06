@@ -10,7 +10,7 @@ public class Entry {
     private String email;
     private String phone;
 
-    public Entry(String firstName, String lastName, String organization, String email, String phone) {
+    public Entry(String firstName, String lastName, String organization, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.organization = organization;
