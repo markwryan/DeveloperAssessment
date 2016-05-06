@@ -96,7 +96,7 @@ public class AddressBookProgram {
      * Quit the program
      */
     public void exit() {
-        return;
+        System.exit(0);
     }
 
     public static void main(String[] args) {
