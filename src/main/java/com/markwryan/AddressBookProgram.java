@@ -29,7 +29,7 @@ public class AddressBookProgram {
 
         Command command;
         try {
-            command = Command.valueOf(input.toUpperCase());
+            command = Command.valueOf(input.trim().toUpperCase());
         }catch (IllegalArgumentException iae) {
             waitForUserCommand();
             return;
@@ -55,14 +55,14 @@ public class AddressBookProgram {
     public void waitForUserAddressBookEntry() {
         System.out.println("[first],[last],[organization],[phone],[email]: ");
         String input = scanner.next();
-        handleUserAddressBookEntry(input);
+        handleUserAddressBookEntry(input.trim());
         waitForUserCommand();
     }
 
     public void waitForUserOrganizationSearch() {
         System.out.println("Enter organization name: ");
         String input = scanner.next();
-        handleUserOrganizationSearch(input);
+        handleUserOrganizationSearch(input.trim());
         waitForUserCommand();
     }
 
