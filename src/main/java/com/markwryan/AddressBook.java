@@ -20,7 +20,10 @@ public class AddressBook {
 
     public boolean add(String input) {
         try {
-            addressBookEntries.add(AddressBookFactory.createEntry(input));
+            Entry entry = AddressBookFactory.createEntry(input);
+            //Entry.equals looks only add First and Last name
+            addressBookEntries.remove(entry);
+            addressBookEntries.add(entry);
             return true;
         } catch (IllegalArgumentException iae) {
             return false;
